@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: remove go
+      run: sudo rm $(type -p go)
     - name: install go
       run: sudo apt update && sudo apt install golang-go -y
     - name: make
