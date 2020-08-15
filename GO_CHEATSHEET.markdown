@@ -34,8 +34,9 @@ var a, b int = 1, 3
 for {}      // while (1) {}
 for cond {} // while (cond) {}
 for init; cond; post {} // for (init; cond; post) {}
-for index, value := range array {}
-for _, value := range array {}
+for index, value := range myarray {}
+for _, value := range myarray {}
+for key, value := range mymap {}
 ```
 
 ## Slices and arrays
