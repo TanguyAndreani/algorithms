@@ -1,11 +1,11 @@
 package benchmark
 
 import (
-  "time"
+	"time"
 )
 
-func Measure(f func ()) time.Duration {
-  start := time.Now()
-  f()
-  return time.Now().Sub(start)
+func Measure(f func()) time.Duration {
+	start := time.Now()
+	f()
+	return time.Now().Sub(start)
 }
