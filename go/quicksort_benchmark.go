@@ -2,8 +2,8 @@ package main
 
 import (
   "fmt"
-  "time"
   "quicksort"
+  "benchmark"
   "math/rand"
 )
 
@@ -30,11 +30,11 @@ func main() {
 
   fmt.Println("Benchmark for slices of", size, "items sorted randomly")
 
-  start := time.Now()
-  quicksort.QuicksortIterative(&numbers1, 0, size - 1)
-  fmt.Println("Iterative Quicksort:", time.Now().Sub(start))
+  fmt.Println("Iterative Quicksort:", benchmark.Measure(func () {
+    quicksort.QuicksortIterative(&numbers1, 0, size - 1)
+  }))
 
-  start = time.Now()
-  quicksort.QuicksortRecursive(&numbers2, 0, size - 1)
-  fmt.Println("Recursive Quicksort:", time.Now().Sub(start))
+  fmt.Println("Recursive Quicksort:", benchmark.Measure(func () {
+    quicksort.QuicksortRecursive(&numbers2, 0, size - 1)
+  }))
 }
