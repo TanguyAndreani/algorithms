@@ -1,17 +1,17 @@
 package quicksort
 
-func swap(numbers *[]int, i int, j int) {
-	tmp := (*numbers)[i]
-	(*numbers)[i] = (*numbers)[j]
-	(*numbers)[j] = tmp
+func swap(numbers []int, i int, j int) {
+	tmp := numbers[i]
+	numbers[i] = numbers[j]
+	numbers[j] = tmp
 }
 
-func partition(numbers *[]int, l int, r int) int {
-	pivot := (*numbers)[r]
+func partition(numbers []int, l int, r int) int {
+	pivot := numbers[r]
 	i := l
 
 	for j := l; j < r; j++ {
-		if (*numbers)[j] < pivot {
+		if numbers[j] < pivot {
 			swap(numbers, i, j)
 			i++
 		}
@@ -20,7 +20,7 @@ func partition(numbers *[]int, l int, r int) int {
 	return i
 }
 
-func QuicksortRecursive(numbers *[]int, l int, r int) {
+func QuicksortRecursive(numbers []int, l int, r int) {
 	if l < r {
 		pivot := partition(numbers, l, r)
 
@@ -29,7 +29,7 @@ func QuicksortRecursive(numbers *[]int, l int, r int) {
 	}
 }
 
-func QuicksortIterative(numbers *[]int, l int, r int) {
+func QuicksortIterative(numbers []int, l int, r int) {
 	stack := make([]int, r-l+1)
 	var stack_idx int
 
