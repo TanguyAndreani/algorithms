@@ -2,8 +2,6 @@
 
 ![go test](https://github.com/TanguyAndreani/algorithms/workflows/go%20test/badge.svg)
 
-Algorithms in C++ and Go
-
 ## Notes
 
 |File|Purpose|
