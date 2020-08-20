@@ -1,3 +1,0 @@
-Benchmark for slices of 300000 items sorted randomly
-Iterative Quicksort: 46.09854ms
-Recursive Quicksort: 37.22468ms
