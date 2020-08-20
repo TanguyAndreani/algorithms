@@ -45,40 +45,35 @@ func compareSlice(a []int, b []int) int {
 	return 0
 }
 
-func TestQuicksortRecursiveSimpleList(t *testing.T) {
-	quicksorted := make([]int, len(simpleList))
-	copy(quicksorted, simpleList)
+type sortf func([]int, int, int)
+type testf func(*testing.T)
 
-	stdsorted := make([]int, len(simpleList))
-	copy(stdsorted, simpleList)
+func TestQuicksort(t *testing.T) {
+	/* we use this function in g() */
+	var f sortf
 
-	/* the sorting algorithm we're testing */
-	QuicksortRecursive(quicksorted, 0, len(quicksorted)-1)
+	var g testf = func(t *testing.T) {
+		quicksorted := make([]int, len(simpleList))
+		copy(quicksorted, simpleList)
 
-	/* the algorithm we're testing it against */
-	sort.Ints(stdsorted)
+		stdsorted := make([]int, len(simpleList))
+		copy(stdsorted, simpleList)
 
-	if compareSlice(quicksorted, stdsorted) != 0 {
-		t.Error("Expected", stdsorted)
-		t.Error("Got", quicksorted)
+		/* the sorting algorithm we're testing */
+		f(quicksorted, 0, len(quicksorted)-1)
+
+		/* the algorithm we're testing it against */
+		sort.Ints(stdsorted)
+
+		if compareSlice(quicksorted, stdsorted) != 0 {
+			t.Error("Expected", stdsorted)
+			t.Error("Got", quicksorted)
+		}
 	}
-}
 
-func TestQuicksortIterativeSimpleList(t *testing.T) {
-	quicksorted := make([]int, len(simpleList))
-	copy(quicksorted, simpleList)
+	f = QuicksortIterative
+	t.Run("Quicksort Iterative", g)
 
-	stdsorted := make([]int, len(simpleList))
-	copy(stdsorted, simpleList)
-
-	/* the sorting algorithm we're testing */
-	QuicksortIterative(quicksorted, 0, len(quicksorted)-1)
-
-	/* the algorithm we're testing it against */
-	sort.Ints(stdsorted)
-
-	if compareSlice(quicksorted, stdsorted) != 0 {
-		t.Error("Expected", stdsorted)
-		t.Error("Got", quicksorted)
-	}
+	f = QuicksortRecursive
+	t.Run("Quicksort Recursive", g)
 }
