@@ -17,4 +17,4 @@ jobs:
       with:
         go-version: '^1.13.8'
     - name: quicksort
-      run: GOPATH=${PWD} go test quicksort -bench=.
+      run: GOPATH=${PWD} go test quicksort
