@@ -1,9 +1,9 @@
 package quicksort
 
 import (
-	"testing"
 	"math/rand"
 	"sort"
+	"testing"
 )
 
 var simpleList = []int{5, 3, 2, 9, 10, 8, 7, 4, 1, 6}
@@ -18,7 +18,7 @@ func BenchmarkQuicksortIterative(b *testing.B) {
 	if b.N > 10 {
 		numbers := make([]int, b.N)
 		fillWithRandomNumbers(numbers)
-		QuicksortIterative(numbers, 0, len(numbers) - 1)
+		QuicksortIterative(numbers, 0, len(numbers)-1)
 	}
 }
 
@@ -26,7 +26,7 @@ func BenchmarkQuicksortRecursive(b *testing.B) {
 	if b.N > 10 {
 		numbers := make([]int, b.N)
 		fillWithRandomNumbers(numbers)
-		QuicksortRecursive(numbers, 0, len(numbers) - 1)
+		QuicksortRecursive(numbers, 0, len(numbers)-1)
 	}
 }
 
@@ -53,15 +53,15 @@ func TestQuicksortRecursiveSimpleList(t *testing.T) {
 	copy(stdsorted, simpleList)
 
 	/* the sorting algorithm we're testing */
-	QuicksortRecursive(quicksorted, 0, len(quicksorted) - 1)
+	QuicksortRecursive(quicksorted, 0, len(quicksorted)-1)
 
 	/* the algorithm we're testing it against */
 	sort.Ints(stdsorted)
 
-    if compareSlice(quicksorted, stdsorted) != 0 {
-        t.Error("Expected", stdsorted)
+	if compareSlice(quicksorted, stdsorted) != 0 {
+		t.Error("Expected", stdsorted)
 		t.Error("Got", quicksorted)
-    }
+	}
 }
 
 func TestQuicksortIterativeSimpleList(t *testing.T) {
@@ -72,13 +72,13 @@ func TestQuicksortIterativeSimpleList(t *testing.T) {
 	copy(stdsorted, simpleList)
 
 	/* the sorting algorithm we're testing */
-	QuicksortIterative(quicksorted, 0, len(quicksorted) - 1)
+	QuicksortIterative(quicksorted, 0, len(quicksorted)-1)
 
 	/* the algorithm we're testing it against */
 	sort.Ints(stdsorted)
 
-    if compareSlice(quicksorted, stdsorted) != 0 {
-        t.Error("Expected", stdsorted)
+	if compareSlice(quicksorted, stdsorted) != 0 {
+		t.Error("Expected", stdsorted)
 		t.Error("Got", quicksorted)
-    }
+	}
 }
