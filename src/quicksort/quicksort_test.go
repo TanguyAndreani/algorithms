@@ -36,6 +36,8 @@ func TestQuicksort(t *testing.T) {
 	var randomList = make([]int, 100)
 	fillWithRandomNumbers(randomList, 1000)
 
+	var emptyList = []int{}
+
 	/* we use this function in g() */
 	var f sortf
 
@@ -75,4 +77,12 @@ func TestQuicksort(t *testing.T) {
 
 	f = QuicksortRecursive
 	t.Run("Quicksort Recursive on random list", g)
+
+	ls = emptyList
+
+	f = QuicksortIterative
+	t.Run("Quicksort Iterative on empty list", g)
+
+	f = QuicksortRecursive
+	t.Run("Quicksort Recursive on empty list", g)
 }

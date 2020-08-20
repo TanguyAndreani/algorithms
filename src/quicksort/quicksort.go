@@ -30,6 +30,10 @@ func QuicksortRecursive(numbers []int, l int, r int) {
 }
 
 func QuicksortIterative(numbers []int, l int, r int) {
+	if len(numbers) == 0 {
+		return
+	}
+
 	stack := make([]int, r-l+1)
 	var stack_idx int
 
