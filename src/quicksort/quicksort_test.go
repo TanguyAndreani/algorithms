@@ -6,27 +6,9 @@ import (
 	"testing"
 )
 
-var simpleList = []int{5, 3, 2, 9, 10, 8, 7, 4, 1, 6}
-
-func fillWithRandomNumbers(numbers []int) {
+func fillWithRandomNumbers(numbers []int, max int) {
 	for index, _ := range numbers {
-		numbers[index] = rand.Intn(1000)
-	}
-}
-
-func BenchmarkQuicksortIterative(b *testing.B) {
-	if b.N > 10 {
-		numbers := make([]int, b.N)
-		fillWithRandomNumbers(numbers)
-		QuicksortIterative(numbers, 0, len(numbers)-1)
-	}
-}
-
-func BenchmarkQuicksortRecursive(b *testing.B) {
-	if b.N > 10 {
-		numbers := make([]int, b.N)
-		fillWithRandomNumbers(numbers)
-		QuicksortRecursive(numbers, 0, len(numbers)-1)
+		numbers[index] = rand.Intn(max)
 	}
 }
 
@@ -49,15 +31,22 @@ type sortf func([]int, int, int)
 type testf func(*testing.T)
 
 func TestQuicksort(t *testing.T) {
+	var simpleList = []int{5, 3, 2, 9, 10, 8, 7, 4, 1, 6}
+
+	var randomList = make([]int, 100)
+	fillWithRandomNumbers(randomList, 1000)
+
 	/* we use this function in g() */
 	var f sortf
 
-	var g testf = func(t *testing.T) {
-		quicksorted := make([]int, len(simpleList))
-		copy(quicksorted, simpleList)
+	var ls []int
 
-		stdsorted := make([]int, len(simpleList))
-		copy(stdsorted, simpleList)
+	var g testf = func(t *testing.T) {
+		quicksorted := make([]int, len(ls))
+		copy(quicksorted, ls)
+
+		stdsorted := make([]int, len(ls))
+		copy(stdsorted, ls)
 
 		/* the sorting algorithm we're testing */
 		f(quicksorted, 0, len(quicksorted)-1)
@@ -71,9 +60,19 @@ func TestQuicksort(t *testing.T) {
 		}
 	}
 
+	ls = simpleList
+
 	f = QuicksortIterative
-	t.Run("Quicksort Iterative", g)
+	t.Run("Quicksort Iterative on simple list", g)
 
 	f = QuicksortRecursive
-	t.Run("Quicksort Recursive", g)
+	t.Run("Quicksort Recursive on simple list", g)
+
+	ls = randomList
+
+	f = QuicksortIterative
+	t.Run("Quicksort Iterative on random list", g)
+
+	f = QuicksortRecursive
+	t.Run("Quicksort Recursive on random list", g)
 }
