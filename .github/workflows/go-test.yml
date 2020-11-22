@@ -18,3 +18,5 @@ jobs:
         go-version: '^1.13.8'
     - name: quicksort
       run: GOPATH=${PWD} go test quicksort
+    - name: strategy_pattern
+      run: GOPATH=${PWD} go test strategy_pattern
