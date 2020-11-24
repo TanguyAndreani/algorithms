@@ -77,6 +77,8 @@ const (
 
 ### Arrays
 
+- An array variable denotes the entire array (pass-by-value)
+
 ```go
 var a [4]int
 a[0] = 1
@@ -86,7 +88,7 @@ b := [2]string{"Penn", "Teller"}
 
 ### Slices
 
-Just like arrays but size is left empty.
+Just like arrays but size is left empty (`[]T`).
 
 ```go
 x := [4]string{"Лайка", "Белка", "Стрелка", "Hello"}
