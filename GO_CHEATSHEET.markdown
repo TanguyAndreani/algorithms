@@ -3,7 +3,28 @@
 For things you certainly don't need to learn by heart. (But it's always
 useful to have them noted somewhere.)
 
-## Overriding a package name
+- [Go Cheatsheet](#go-cheatsheet)
+  * [Packages](#packages)
+    + [Overriding a package name](#overriding-a-package-name)
+  * [Basics](#basics)
+    + [Declaring variables](#declaring-variables)
+    + [Declaring multiple variables at once](#declaring-multiple-variables-at-once)
+    + [For loops](#for-loops)
+    + [Compile time constants](#compile-time-constants)
+  * [Slices and arrays](#slices-and-arrays)
+    + [Arrays](#arrays)
+    + [Slices](#slices)
+  * [Maps](#maps)
+  * [I/O](#i-o)
+    + [Reading a file](#reading-a-file)
+    + [Opening a file](#opening-a-file)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
+## Packages
+
+### Overriding a package name
 
 ```go
 import "log"
@@ -13,7 +34,9 @@ import mylog "my/log"
 // mylog.DoThat()
 ```
 
-## Declaring variables
+## Basics
+
+### Declaring variables
 
 ```go
 a := 12 // short variable declaration
@@ -22,13 +45,13 @@ var a int
 var a int = 12
 ```
 
-## Declaring multiple variables at once
+### Declaring multiple variables at once
 
 ```go
 var a, b int = 1, 3
 ```
 
-## For loops
+### For loops
 
 ```go
 for {}      // while (1) {}
@@ -37,6 +60,15 @@ for init; cond; post {} // for (init; cond; post) {}
 for index, value := range myarray {}
 for _, value := range myarray {}
 for key, value := range mymap {}
+```
+
+### Compile time constants
+
+```go
+const (
+  a = 12
+  b = "hello"
+)
 ```
 
 ## Slices and arrays
@@ -96,16 +128,9 @@ func main() {
 mymap := make(map[string]int) // mymap[string] = int
 ```
 
-## Compile time constants
+## I/O
 
-```go
-const (
-  a = 12
-  b = "hello"
-)
-```
-
-## Reading a file
+### Reading a file
 
 ```go
 input := bufio.NewScanner(os.Stdin)
@@ -114,7 +139,7 @@ for input.Scan() { // puts line in input.Text() and return true or return false 
 }
 ```
 
-## Opening a file
+### Opening a file
 
 Check out the os package's [documentation](https://golang.org/pkg/os).
 
