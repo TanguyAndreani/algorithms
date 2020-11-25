@@ -20,7 +20,7 @@ func TestLoadbar(t *testing.T) {
 
 	bar.register(&obs)
 
-	for i := 0; i < 140 /*20*/; i++ {
+	for i := 0; i < 140; /*20*/ i++ {
 		bar.increment(5)
 	}
 

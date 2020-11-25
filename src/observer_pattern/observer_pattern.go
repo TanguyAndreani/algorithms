@@ -11,11 +11,11 @@ type ObservableLoadbar interface {
 	update_observers()
 }
 
-type Loadbar struct{
+type Loadbar struct {
 	observers []ObserverLoadbar
-	progress int
-	max int
-	min int
+	progress  int
+	max       int
+	min       int
 }
 
 func (l *Loadbar) increment(x int) int {
@@ -50,6 +50,6 @@ func (l *Loadbar) register(o ObserverLoadbar) {
 
 func (l *Loadbar) update_observers() {
 	for _, o := range l.observers {
-		o.update(l.progress, l.progress / l.max * 100)
+		o.update(l.progress, l.progress/l.max*100)
 	}
 }
