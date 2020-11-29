@@ -20,3 +20,5 @@ jobs:
       run: GOPATH=${PWD} go test quicksort
     - name: strategy_pattern
       run: GOPATH=${PWD} go test strategy_pattern
+    - name: observer_pattern
+      run: GOPATH=${PWD} go test observer_pattern
