@@ -22,3 +22,5 @@ jobs:
       run: GOPATH=${PWD} go test strategy_pattern
     - name: observer_pattern
       run: GOPATH=${PWD} go test observer_pattern
+    - name: decorator_pattern
+      run: GOPATH=${PWD} go test decorator_pattern
